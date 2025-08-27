@@ -20,9 +20,13 @@ export const Operations = () => {
   }
 
   return (
-    <div>
-      <div>Operations</div>
-      <button onClick={() => isModalVisible(true)}>Add new operation</button>
+    <div className="container p-5 col-md-4">
+      <div className="row">
+        <h3 className="col">Operations</h3>
+        <button className="col" onClick={() => isModalVisible(true)}>
+          Add new operation
+        </button>
+      </div>
       {operationList.length > 0 ? (
         <ul>
           {operationList.map((op: OperationList) => (
@@ -39,7 +43,7 @@ export const Operations = () => {
           ))}
         </ul>
       ) : (
-        <div>Currently empty. Add new operation by pressing the button</div>
+        <p>Currently empty. Add new operation by pressing the button</p>
       )}
       {modalVisible && (
         <Modal

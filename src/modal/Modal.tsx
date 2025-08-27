@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import "./modal.css";
+import styles from "./modal.module.css";
 import type { OperationData } from "../operations/operations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -27,9 +27,9 @@ export const Modal = ({ onNewData, onClose }: ModalProps) => {
   };
 
   return (
-    <div className="modal">
-      <div className="overlay">
-        <div className="content">
+    <div className={styles.modal}>
+      <div className={styles.overlay}>
+        <div className={styles.content}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label>Operation Title</label>
             <input {...register("title")} />

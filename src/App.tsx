@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Profile } from "./profile/profile";
 import { NavPage } from "./navPage/navPage";
 import { Operations } from "./operations/operations";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

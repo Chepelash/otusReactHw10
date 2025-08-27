@@ -26,28 +26,40 @@ export const Profile = () => {
   const onSubmit: SubmitHandler<ProfileInput> = (data) => console.log(data);
 
   return (
-    <div>
-      <div>Profile</div>
+    <div className="container border rounded p-5 col-md-4">
+      <h3>Profile</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
-        <input {...register("name")} />
-        <p>{errors.name?.message}</p>
+        <div className="form-group">
+          <label>Name</label>
+          <input {...register("name")} className="form-control" />
+          <div className="form-text">{errors.name?.message}</div>
+        </div>
 
-        <label>Email</label>
-        <input {...register("email")} />
-        <p>{errors.email?.message}</p>
+        <div className="form-group">
+          <label>Email</label>
+          <input {...register("email")} className="form-control" />
+          <div className="form-text">{errors.email?.message}</div>
+        </div>
 
-        <label>Message</label>
-        <input {...register("message")} />
-        <p>{errors.message?.message}</p>
+        <div className="form-group">
+          <label>Message</label>
+          <input {...register("message")} className="form-control" />
+          <div className="form-text">{errors.message?.message}</div>
+        </div>
 
-        <label>DataSouce</label>
-        <select {...register("dataSource")}>
-          <option value={DataSouce.friends}>{DataSouce.friends}</option>
-          <option value={DataSouce.newsletters}>{DataSouce.newsletters}</option>
-          <option value={DataSouce.socialMedia}>{DataSouce.socialMedia}</option>
-        </select>
-        <p>{errors.dataSource?.message}</p>
+        <div className="form-group">
+          <label>DataSouce</label>
+          <select {...register("dataSource")} className="form-control">
+            <option value={DataSouce.friends}>{DataSouce.friends}</option>
+            <option value={DataSouce.newsletters}>
+              {DataSouce.newsletters}
+            </option>
+            <option value={DataSouce.socialMedia}>
+              {DataSouce.socialMedia}
+            </option>
+          </select>
+          <div className="form-text">{errors.dataSource?.message}</div>
+        </div>
 
         <input type="submit" />
       </form>

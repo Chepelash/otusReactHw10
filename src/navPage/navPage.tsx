@@ -1,22 +1,26 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { Logo } from "../logo/Logo";
-import "./navPage.css";
-import classNames from "classnames";
 
 export const NavPage = () => {
   return (
     <div>
-      <div className="header">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <Logo />
-        <nav className="nav">
-          <NavLink to="/" end className={classNames("navItem")}>
-            {({ isActive }) => <span>{isActive ? "👉" : ""} Home</span>}
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <NavLink to="/" end className="nav-item">
+            {({ isActive }) => (
+              <span className="nav-link">{isActive ? "👉" : ""} Home</span>
+            )}
           </NavLink>
-          <NavLink to="/operations" end className="navItem">
-            {({ isActive }) => <span>{isActive ? "👉" : ""} Operations</span>}
+          <NavLink to="/operations" end className="nav-item">
+            {({ isActive }) => (
+              <span className="nav-link">
+                {isActive ? "👉" : ""} Operations
+              </span>
+            )}
           </NavLink>
-        </nav>
-      </div>
+        </ul>
+      </nav>
       <Outlet />
     </div>
   );
