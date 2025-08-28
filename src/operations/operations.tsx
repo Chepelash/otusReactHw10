@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../modal/Modal";
+import { Modal } from "../modal/modal";
 
 interface OperationList {
   id: string;
@@ -28,17 +28,24 @@ export const Operations = () => {
         </button>
       </div>
       {operationList.length > 0 ? (
-        <ul>
+        <ul className="list-group">
           {operationList.map((op: OperationList) => (
-            <li key={op.id}>
-              <h2>{op.title}</h2> <p>{op.description}</p>{" "}
-              <button
-                onClick={() => {
-                  removeOperation(op.id);
-                }}
-              >
-                X
-              </button>{" "}
+            <li key={op.id} className="list-group-item">
+              <div className="row">
+                <h2 className="col-md-10">{op.title}</h2>
+                <button
+                  className="col-md-2"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Remove operation"
+                  onClick={() => {
+                    removeOperation(op.id);
+                  }}
+                >
+                  <span>&times;</span>
+                </button>{" "}
+              </div>
+              <p>{op.description}</p>{" "}
             </li>
           ))}
         </ul>
@@ -46,10 +53,18 @@ export const Operations = () => {
         <p>Currently empty. Add new operation by pressing the button</p>
       )}
       {modalVisible && (
-        <Modal
-          onNewData={(newVal: OperationData) => handleModalFormSubmit(newVal)}
-          onClose={() => isModalVisible(false)}
-        ></Modal>
+        <div
+          className="modal fade show"
+          style={{
+            display: "block",
+            background: "rgba(0, 0, 0, .8)",
+          }}
+        >
+          <Modal
+            onNewData={(newVal: OperationData) => handleModalFormSubmit(newVal)}
+            onClose={() => isModalVisible(false)}
+          ></Modal>
+        </div>
       )}
     </div>
   );
