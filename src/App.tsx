@@ -1,19 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Profile } from "./profile/profile";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { NavPage } from "./navPage/navPage";
 import { Operations } from "./operations/operations";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Profile } from "./profile/profile";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<NavPage />}>
           <Route index element={<Profile />} />
           <Route path="operations" element={<Operations />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
