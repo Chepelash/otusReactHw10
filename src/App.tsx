@@ -10,7 +10,10 @@ function App() {
       <Routes>
         <Route path="/" element={<NavPage />}>
           <Route index element={<Profile />} />
-          <Route path="operations" element={<Operations />} />
+          <Route path="operations">
+            <Route index element={<Operations />} />
+            <Route path="modal_add" element={<Operations withModal={true} />} />
+          </Route>
         </Route>
       </Routes>
     </HashRouter>

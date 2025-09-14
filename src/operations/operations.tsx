@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal } from "../modal/modal";
+import { useNavigate } from "react-router-dom";
 
 interface OperationList {
   id: string;
@@ -8,22 +9,31 @@ interface OperationList {
 }
 export type OperationData = Omit<OperationList, "id">;
 
-export const Operations = () => {
+interface OperationsProps {
+  withModal?: boolean;
+}
+export const Operations = ({ withModal }: OperationsProps) => {
   const [operationList, setOperationList] = useState<OperationList[]>([]);
-  const [modalVisible, isModalVisible] = useState<boolean>(false);
+  const navigate = useNavigate();
   function removeOperation(id: string): void {
     setOperationList((op) => op.filter((op) => op.id !== id));
   }
   function handleModalFormSubmit(data: OperationData): void {
     setOperationList([...operationList, { id: crypto.randomUUID(), ...data }]);
-    isModalVisible(false);
+    navigate(-1);
+  }
+  function onModalClose(): void {
+    navigate(-1);
+  }
+  function gotoModal(): void {
+    navigate("modal_add");
   }
 
   return (
     <div className="container p-5 col-md-4">
       <div className="row">
         <h3 className="col">Operations</h3>
-        <button className="col" onClick={() => isModalVisible(true)}>
+        <button className="col" onClick={() => gotoModal()}>
           Add new operation
         </button>
       </div>
@@ -52,7 +62,7 @@ export const Operations = () => {
       ) : (
         <p>Currently empty. Add new operation by pressing the button</p>
       )}
-      {modalVisible && (
+      {withModal && (
         <div
           className="modal fade show"
           style={{
@@ -62,7 +72,7 @@ export const Operations = () => {
         >
           <Modal
             onNewData={(newVal: OperationData) => handleModalFormSubmit(newVal)}
-            onClose={() => isModalVisible(false)}
+            onClose={() => onModalClose()}
           ></Modal>
         </div>
       )}
